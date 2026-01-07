@@ -1,0 +1,70 @@
+i am going to create an e-commerce website using React.js node.js express mongodb etc
+ 
+My Projects Plan / Structure : 
+
+1. Frontend : 1. Register  form-> username, email, profilepic type:file 
+              2. Login Form -> username, email  
+	      3. shop page -> 1. navbar -> Farid'sStore Name Logo, cart, profile, wishlist, 
+			      2. add sidebar with categories and add some stuff by yourself 
+			      3. products Cards -> image, name, price, discount buy now and add to cart button
+	      4. product page -> navbar, image, name, description, discount, buy now add to cart buttons, qty
+	      5. Checkout Page -> navbar, image, name, discount price, original price, total calculated price, place order button
+	      6. Cart Page - > navbar, image, name, price, qty, delete icon, go to checkout button
+	      7. profile page -> navbar, image, name, orders tab, wishlist tab and profile update form with fields password and email
+
+
+2. Backend : Schemas: 1. userSchema:{
+				   	username:String,
+					email: String,
+					password: String,
+					profilepic: Buffer,
+					cart: [],
+					orders: [],
+					wishlist:[],
+					isAdmin: Boolean	
+				     }
+
+		      2. productSchema:{
+					name,
+					image,
+					price,
+					description,
+					category,
+					discount
+				       }
+
+		      3. ownerSchema:{
+					username:String,
+					email: String,
+					password: String,
+					profilepic: Buffer,
+					products: {[], ref:product},
+					users: {[], ref: user}
+				     }
+
+
+So This is my plan you have to create, analyze, improve step by step, but only when i give you command
+
+Website Color Theme and Fonts:     🎨 Color Palette
+
+					#FFFFFF — Pure White (background)
+
+					#000000 — Jet Black (text and accents)
+
+					#C2B59B — Champagne Gold (highlights, buttons)
+
+					#555555 — Charcoal Gray (secondary text)
+
+				   🅰️ Font Pairing
+
+					Headlines: Playfair Display (serif, elegant)
+
+					Body Text: Montserrat (clean sans-serif)
+
+and use inline tailwind css for styling
+this is enough for now, i will tell you other things of plan between creation 
+
+
+
+
+						
