@@ -56,7 +56,7 @@ const register = async (req, res) => {
 
 
     // 📧 Send email
-    await transporter.sendMail({
+    transporter.sendMail({
       from: `"Farid'sStore" <${process.env.EMAIL_USER}>`,
       to: user.email,
       subject: "Verify your email",
@@ -148,7 +148,12 @@ const register = async (req, res) => {
   </body>
 </html>
 `,
-    });
+    }).then(() => {
+    console.log("Verification email sent");
+  })
+  .catch((err) => {
+    console.error("EMAIL FAILED:", err.message);
+  });
 
 
 
