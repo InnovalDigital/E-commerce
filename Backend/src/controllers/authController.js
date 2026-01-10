@@ -3,7 +3,6 @@ const bcrypt = require("bcrypt");
 const userModel = require("../models/userSchema");
 const crypto = require("crypto");
 const transporter = require("../config/email-verification");
-const dotenv = require('dotenv').config();
 
 
 /**

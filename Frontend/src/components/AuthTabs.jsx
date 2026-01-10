@@ -1,4 +1,5 @@
 import { useState } from "react";
+import {dotenv} from 'dotenv'
 
 const AuthTabs = () => {
   const [activeTab, setActiveTab] = useState("register");
