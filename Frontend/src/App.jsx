@@ -3,7 +3,6 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 import AuthTabs from "./components/AuthTabs";
 import Loader from "./components/Loader";
-import EmailVerified from "./pages/EmailVerified";
 
 function App() {
   const [loading, setLoading] = useState(true);
