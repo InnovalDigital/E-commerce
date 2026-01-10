@@ -1,1 +1,13 @@
 @import "tailwindcss";
+/* Hide browser password reveal icon (Chrome, Edge) */
+input[type="password"]::-ms-reveal,
+input[type="password"]::-ms-clear {
+  display: none;
+}
+
+/* Hide Chrome autofill & credentials icon */
+input[type="password"]::-webkit-credentials-auto-fill-button {
+  visibility: hidden;
+  position: absolute;
+  right: 0;
+}
