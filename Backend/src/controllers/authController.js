@@ -2,10 +2,7 @@ const jwt = require("jsonwebtoken");
 const bcrypt = require("bcrypt");
 const userModel = require("../models/userSchema");
 const crypto = require("crypto");
-const { Resend } = require("resend");
-
-const resend = new Resend(process.env.RESEND_API_KEY);
-
+const transporter = require("../config/email-verification");
 
 
 /**
@@ -55,12 +52,12 @@ const register = async (req, res) => {
     });
 
     // 🔗 Verification link
-    const verifyLink = `https://ecommerce-backend-fob8.onrender.com/users/verify-email/${verificationToken}`;
+    const verifyLink = `http://localhost:3000/users/verify-email/${verificationToken}`;
 
 
     // 📧 Send email
-   await resend.emails.send({
-      from: `Farid'sStore <onboarding@resend.dev>`,
+    transporter.sendMail({
+      from: `"Farid'sStore" <${process.env.EMAIL_USER}>`,
       to: user.email,
       subject: "Verify your email",
       html: `
