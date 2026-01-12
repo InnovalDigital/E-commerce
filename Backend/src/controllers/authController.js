@@ -58,7 +58,7 @@ const register = async (req, res) => {
 
     // 📧 Send email
    await resend.emails.send({
-      from: `"Farid'sStore" <${process.env.EMAIL_USER}>`,
+      from: `Farid'sStore <onboarding@resend.dev>`,
       to: user.email,
       subject: "Verify your email",
       html: `
