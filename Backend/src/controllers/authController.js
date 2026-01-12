@@ -2,6 +2,8 @@ const jwt = require("jsonwebtoken");
 const bcrypt = require("bcrypt");
 const userModel = require("../models/userSchema");
 const crypto = require("crypto");
+const { Resend } = require("resend");
+
 const resend = new Resend(process.env.RESEND_API_KEY);
 
 
