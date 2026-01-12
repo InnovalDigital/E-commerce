@@ -2,7 +2,8 @@ const jwt = require("jsonwebtoken");
 const bcrypt = require("bcrypt");
 const userModel = require("../models/userSchema");
 const crypto = require("crypto");
-const transporter = require("../config/email-verification");
+const resend = new Resend(process.env.RESEND_API_KEY);
+
 
 
 /**
@@ -56,7 +57,7 @@ const register = async (req, res) => {
 
 
     // 📧 Send email
-    transporter.sendMail({
+   await resend.emails.send({
       from: `"Farid'sStore" <${process.env.EMAIL_USER}>`,
       to: user.email,
       subject: "Verify your email",
