@@ -1,0 +1,2 @@
+{"level":"error","message":"❌ MongoDB connection failed:","service":"user-service","timeStamp":"2026-01-19T08:30:38.934Z"}
+{"level":"error","message":"REMOVE CART ITEM ERROR:","service":"user-service","timeStamp":"2026-01-19T11:01:56.306Z"}

@@ -39,8 +39,9 @@ const productSchema = new mongoose.Schema(
     },
 
     image:{
-        type: Buffer // image URL (Cloudinary / local)
-      },
+      data: Buffer,
+      contentType: String,
+    },
 
     stock: {
       type: Number,
@@ -52,6 +53,8 @@ const productSchema = new mongoose.Schema(
       type: Boolean,
       default: true,
     },
+
+   owner: String,
 
   },
   {
@@ -68,7 +71,7 @@ productSchema.pre("save", function (next) {
   } else {
     this.finalPrice = this.price;
   }
-  next();
+
 });
 
 // Index for search

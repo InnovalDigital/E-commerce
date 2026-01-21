@@ -1,5 +1,7 @@
 import { useState } from "react";
 import {dotenv} from 'dotenv'
+import { useNavigate } from "react-router-dom";
+
 
 const AuthTabs = () => {
   const [activeTab, setActiveTab] = useState("register");
@@ -8,6 +10,8 @@ const AuthTabs = () => {
   const [successMessage, setSuccessMessage] = useState("");
   const [showPassword, setShowPassword] = useState(false);
   const [loginSuccess, setLoginSuccess] = useState("");
+  const navigate = useNavigate();
+  const [user, setUser] = useState(undefined);
 
 
   const [formData, setFormData] = useState({
@@ -88,7 +92,7 @@ const validateLogin = () => {
     if (profilePic) data.append("profilepic", profilePic);
 
     try {
-      const res = await fetch(`${import.meta.env.VITE_API_URL}/users/register`, {
+      const res = await fetch(`http://localhost:3000/users/register`, {
         method: "POST",
         body: data,
         credentials: "include",
@@ -115,21 +119,13 @@ const validateLogin = () => {
   /* ======================
      LOGIN SUBMIT
   ====================== */
-  const handleLogin = async (e) => {
+ const handleLogin = async (e) => {
   e.preventDefault();
-
   setErrors({});
   setLoginSuccess("");
-  setLoading(true);
-
-  // 🔥 THIS WAS MISSING
-  if (!validateLogin()) {
-    setLoading(false);
-    return;
-  }
 
   try {
-    const res = await fetch(`${import.meta.env.VITE_API_URL}/users/login`, {
+    const res = await fetch("http://localhost:3000/users/login", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       credentials: "include",
@@ -141,20 +137,33 @@ const validateLogin = () => {
 
     const result = await res.json();
 
-    if (!res.ok || !result.success) {
-      setErrors({ form: result.message });
-      setLoading(false);
+    if (!result?.success) {
+      setErrors({ form: result.message || "Login failed" });
       return;
     }
 
-    setLoginSuccess("Login successful 🎉");
+    if (result.success) {
+      setUser(result.user);
+      
+      setLoginSuccess("Login successful 🎉");
+      if (result.user.isAdmin) {
+        navigate("/admin/create-product"); // 🔥 OWNER
+      } else {
+        navigate("/shop"); // 👤 NORMAL USER
+      }
+}
+
+    // ✅ REDIRECT AFTER SHORT DELAY
+    setTimeout(() => {
+      navigate("/shop");
+    }, 800);
 
   } catch (err) {
+    console.error("LOGIN ERROR:", err);
     setErrors({ form: "Server error. Try again." });
-  } finally {
-    setLoading(false);
   }
 };
+
 
   return (
     <div className="min-h-screen flex items-center justify-center bg-gray-100 px-4">

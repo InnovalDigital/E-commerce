@@ -193,6 +193,25 @@ const register = async (req, res) => {
   }
 };
 
+const getAllUsers = async (req, res) => {
+    try {
+        let users = await userModel.find();
+
+        console.log(users[0].profilepic);
+        res.status(201).json({
+            success: true,
+            users
+        })
+
+    }
+    catch(err){
+        console.log(err.message)
+        res.status(500).json({
+            success: false,
+            message: 'error in products'
+        })
+    }
+}
 
 
-module.exports = { register };
+module.exports = { register, getAllUsers };

@@ -14,7 +14,7 @@ const verifyEmail = async (req, res) => {
     user.verificationToken = undefined;
     await user.save();
 
-    return res.redirect("https://e-commerce-ruddy-eta.vercel.app/email-verified");
+    return res.redirect(`${process.env.CLIENT_URL}/shop`);
 
   } catch (error) {
     console.error("VERIFY ERROR:", error);
